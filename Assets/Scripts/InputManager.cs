@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputActionReference _look;
     
     public static InputManager Instance {get ; private set;}
-    public Vector2 InputActionMove { get; private set; }
+    public Vector2 InputMoveDirection { get; private set; }
     public Vector2 DeltaCameraMovement { get; private set; }
 
 
@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
 
     private void PerformMove(InputAction.CallbackContext ctx)
     {
-        InputActionMove = ctx.ReadValue<Vector2>();
+        InputMoveDirection = ctx.ReadValue<Vector2>();
     }
 
     private void PerformLook(InputAction.CallbackContext ctx)
