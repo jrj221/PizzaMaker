@@ -12,12 +12,14 @@ public class PlayerInteractionManager : MonoBehaviour
     {
         EventBus.Subscribe(GameEvents.OnInteract, Interact);
         EventBus.Subscribe<GameObject>(GameEvents.PickupItem, Pickup);
-        EventBus.Subscribe<string>(GameEvents.OnInteract, Test1);
-        EventBus.Subscribe<string>(GameEvents.OnInteract, Test2);
-        EventBus.Subscribe<int>(GameEvents.OnInteract, Test3);
     }
 
     private void Update()
+    {
+        ManageObjectOutlines();
+    }
+
+    private void ManageObjectOutlines()
     {
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance))
         {
