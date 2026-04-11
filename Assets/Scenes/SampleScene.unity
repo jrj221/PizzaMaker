@@ -1802,7 +1802,7 @@ Transform:
   m_GameObject: {fileID: 1384454769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29378, y: 0, z: 1.82134}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1999,7 +1999,7 @@ GameObject:
   - component: {fileID: 1936042713}
   - component: {fileID: 1936042712}
   - component: {fileID: 1936042716}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pizza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2093,7 +2093,7 @@ Transform:
   m_GameObject: {fileID: 1936042711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0.05, z: 3.42}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2289,8 +2289,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1046200746}
+  - {fileID: 1384454771}
   - {fileID: 733840343}
   - {fileID: 1968909474}
-  - {fileID: 1046200746}
   - {fileID: 1936042715}
-  - {fileID: 1384454771}
