@@ -6,6 +6,7 @@ public class PlayerInteractionManager : MonoBehaviour
     [SerializeField] private GameObject _camera;
     [SerializeField] private float _interactDistance;
     private GameObject _heldItem;
+    [SerializeField] private Transform _holdPoint;
     private GameObject _focusedItem;
 
     private void Start()
@@ -59,6 +60,9 @@ public class PlayerInteractionManager : MonoBehaviour
 
     private void Pickup(GameObject obj)
     {
-        
+        _heldItem = obj;
+        Debug.Log($"Picked up item {obj.name}");
+        obj.transform.SetParent(_holdPoint);
+        obj.transform.localPosition = Vector3.zero;
     }
 }
