@@ -7,11 +7,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputActionReference _move;
     [SerializeField] private InputActionReference _look;
     [SerializeField] private InputActionReference _interact;
+    [SerializeField] private InputActionReference _throw;
     
     public static InputManager Instance {get ; private set;}
     public Vector2 InputMoveDirection { get; private set; }
     public Vector2 DeltaCameraMovement { get; private set; }
-    public bool PressedInteract { get; private set; }
 
 
     private void Awake()
@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
         _move.action.performed += PerformMove;
         _look.action.performed += PerformLook;
         _interact.action.started += StartInteract;
+        _throw.action.started += StartThrow;
     }
 
     private void OnDisable()
@@ -33,6 +34,7 @@ public class InputManager : MonoBehaviour
         _move.action.performed -= PerformMove;
         _look.action.performed -= PerformLook;
         _interact.action.started -= StartInteract;
+        _throw.action.started -= StartThrow;
     }
 
     private void PerformMove(InputAction.CallbackContext ctx)
@@ -48,5 +50,10 @@ public class InputManager : MonoBehaviour
     private void StartInteract(InputAction.CallbackContext ctx)
     {
         EventBus.Trigger("OnInteract");
+    }
+
+    private void StartThrow(InputAction.CallbackContext ctx)
+    {
+        EventBus.Trigger("ThrowItem");
     }
 }

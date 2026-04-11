@@ -5,6 +5,7 @@ public class PlayerInteractionManager : MonoBehaviour
 {
     [SerializeField] private GameObject _camera;
     [SerializeField] private float _interactDistance;
+    [SerializeField] private float _throwForce;
     private GameObject _heldItem;
     [SerializeField] private Transform _holdPoint;
     private GameObject _focusedItem;
@@ -13,6 +14,7 @@ public class PlayerInteractionManager : MonoBehaviour
     {
         EventBus.Subscribe(GameEvents.OnInteract, Interact);
         EventBus.Subscribe<GameObject>(GameEvents.PickupItem, Pickup);
+        EventBus.Subscribe(GameEvents.ThrowItem, Throw);
     }
 
     private void Update()
@@ -63,6 +65,22 @@ public class PlayerInteractionManager : MonoBehaviour
         _heldItem = obj;
         Debug.Log($"Picked up item {obj.name}");
         obj.transform.SetParent(_holdPoint);
+        obj.GetComponent<Rigidbody>().useGravity = false;
+        obj.GetComponent<BoxCollider>().enabled = false;
         obj.transform.localPosition = Vector3.zero;
+    }
+
+    private void Throw()
+    {
+        if (!_heldItem) return; // Nothing to throw
+        
+        GameObject throwItem = _heldItem;
+        _heldItem = null;
+        
+        throwItem.transform.SetParent(null);
+        throwItem.GetComponent<BoxCollider>().enabled = true;
+        var throwRigidbody = throwItem.GetComponent<Rigidbody>();
+        throwRigidbody.useGravity = true;
+        throwRigidbody.AddForce(_throwForce * _camera.transform.forward, ForceMode.Impulse);
     }
 }
