@@ -11,6 +11,10 @@ public class PlayerInteractionManager : MonoBehaviour
     private void Start()
     {
         EventBus.Subscribe(GameEvents.OnInteract, Interact);
+        EventBus.Subscribe<GameObject>(GameEvents.PickupItem, Pickup);
+        EventBus.Subscribe<string>(GameEvents.OnInteract, Test1);
+        EventBus.Subscribe<string>(GameEvents.OnInteract, Test2);
+        EventBus.Subscribe<int>(GameEvents.OnInteract, Test3);
     }
 
     private void Update()
@@ -45,9 +49,14 @@ public class PlayerInteractionManager : MonoBehaviour
         item.layer = LayerMask.NameToLayer("Supports Outline");
     }
 
-    private void Interact(object param)
+    private void Interact()
     {
         var interactable = _focusedItem?.transform.gameObject.GetComponent<IInteract>();
         interactable?.Interact(_heldItem);
+    }
+
+    private void Pickup(GameObject obj)
+    {
+        
     }
 }

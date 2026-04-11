@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PizzaInteraction : MonoBehaviour, IInteract
 {
-    public void Interact(GameObject item)
+    public void Interact(GameObject playerHeldItem)
     {
-        Debug.Log("Pizza Interact");
+        if (playerHeldItem != null) return; // Can't pick up
+        EventBus.Trigger("PickupItem", new {transform.gameObject} );
     }
 }
