@@ -4,6 +4,6 @@ namespace Interactions
 {
     public interface IInteract
     {
-        public void Interact(GameObject item);
+        public void Interact(GameObject playerHeldItem);
     }
 }

@@ -57,6 +57,7 @@ public class PlayerInteractionManager : MonoBehaviour
     private void Interact()
     {
         var interactable = _focusedItem?.transform.gameObject.GetComponent<IInteract>();
+        Debug.Log(interactable);
         interactable?.Interact(_heldItem);
     }
 
@@ -65,9 +66,13 @@ public class PlayerInteractionManager : MonoBehaviour
         _heldItem = obj;
         Debug.Log($"Picked up item {obj.name}");
         obj.transform.SetParent(_holdPoint);
-        obj.GetComponent<Rigidbody>().useGravity = false;
-        obj.GetComponent<BoxCollider>().enabled = false;
+        var objRigidbody = obj.GetComponent<Rigidbody>();
+        objRigidbody.useGravity = false;
+        objRigidbody.linearVelocity = Vector3.zero;
+        objRigidbody.isKinematic = true;
+        objRigidbody.detectCollisions = false;
         obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
     }
 
     private void Throw()
@@ -80,7 +85,9 @@ public class PlayerInteractionManager : MonoBehaviour
         throwItem.transform.SetParent(null);
         throwItem.GetComponent<BoxCollider>().enabled = true;
         var throwRigidbody = throwItem.GetComponent<Rigidbody>();
+        throwRigidbody.detectCollisions = true;
         throwRigidbody.useGravity = true;
+        throwRigidbody.isKinematic = false;
         throwRigidbody.AddForce(_throwForce * _camera.transform.forward, ForceMode.Impulse);
     }
 }
