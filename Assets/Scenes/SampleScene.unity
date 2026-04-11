@@ -1748,6 +1748,7 @@ MonoBehaviour:
   _actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _interact: {fileID: 0}
 --- !u!4 &1046200746
 Transform:
   m_ObjectHideFlags: 0
@@ -2182,7 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f09455bc16554c5884746ec722d3967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _speed: 5
+  _speed: 6
 --- !u!54 &1968909476
 Rigidbody:
   m_ObjectHideFlags: 0
