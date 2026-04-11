@@ -25,7 +25,6 @@ public class InputManager : MonoBehaviour
         _move.action.performed += PerformMove;
         _look.action.performed += PerformLook;
         _interact.action.started += StartInteract;
-        _interact.action.canceled += CancelInteract;
     }
 
     private void OnDisable()
@@ -34,7 +33,6 @@ public class InputManager : MonoBehaviour
         _move.action.performed -= PerformMove;
         _look.action.performed -= PerformLook;
         _interact.action.started -= StartInteract;
-        _interact.action.canceled -= CancelInteract;
     }
 
     private void PerformMove(InputAction.CallbackContext ctx)
@@ -49,11 +47,6 @@ public class InputManager : MonoBehaviour
 
     private void StartInteract(InputAction.CallbackContext ctx)
     {
-        PressedInteract = true;
-    }
-
-    private void CancelInteract(InputAction.CallbackContext ctx)
-    {
-        PressedInteract = false;
+        EventBus.Trigger("OnInteract");
     }
 }

@@ -1748,7 +1748,7 @@ MonoBehaviour:
   _actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _interact: {fileID: 0}
+  _interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!4 &1046200746
 Transform:
   m_ObjectHideFlags: 0
@@ -1954,6 +1954,7 @@ GameObject:
   - component: {fileID: 1936042714}
   - component: {fileID: 1936042713}
   - component: {fileID: 1936042712}
+  - component: {fileID: 1936042716}
   m_Layer: 0
   m_Name: Pizza
   m_TagString: Untagged
@@ -2054,6 +2055,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936042716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936042711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930c2bae8258b48cc8fe0ad53fe75d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PizzaInteraction
 --- !u!1 &1968909470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,8 +2079,9 @@ GameObject:
   - component: {fileID: 1968909473}
   - component: {fileID: 1968909472}
   - component: {fileID: 1968909471}
-  - component: {fileID: 1968909475}
   - component: {fileID: 1968909476}
+  - component: {fileID: 1968909475}
+  - component: {fileID: 1968909477}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2211,6 +2225,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1968909477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968909470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debe97c3122a04aacb055721906eae79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionManager
+  _camera: {fileID: 330585543}
+  _interactDistance: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
