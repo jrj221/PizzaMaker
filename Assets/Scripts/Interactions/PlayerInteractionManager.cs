@@ -19,6 +19,7 @@ public class PlayerInteractionManager : MonoBehaviour
         {
             // You aren't looking at anything
             RemoveOutline(_focusedItem);
+            _focusedItem = null;
             return;
         }
 
