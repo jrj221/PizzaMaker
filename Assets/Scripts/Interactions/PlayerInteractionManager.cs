@@ -24,20 +24,23 @@ public class PlayerInteractionManager : MonoBehaviour
 
     private void ManageObjectOutlines()
     {
+        // Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _interactDistance, Color.red);
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance))
         {
+            Debug.Log("Not looking");
             // You aren't looking at anything
             RemoveOutline(_focusedItem);
             _focusedItem = null;
             return;
         }
-
-        if (!hit.transform.gameObject.layer.Equals(LayerMask.NameToLayer("Supports Outline"))) return; // Don't outline object that doesn't support it
+        
         if (hit.transform.gameObject.Equals(_focusedItem)) return; // Return if you're looking at the same thing as last frame
         
-        GameObject prevFocusedItem = _focusedItem;
+        RemoveOutline(_focusedItem);
+        _focusedItem = null;
+        
+        if (!hit.transform.gameObject.layer.Equals(LayerMask.NameToLayer("Supports Outline"))) return; // Don't outline object that doesn't support it
         _focusedItem = hit.transform.gameObject;
-        RemoveOutline(prevFocusedItem);
         AddOutline(_focusedItem);
     }
 
