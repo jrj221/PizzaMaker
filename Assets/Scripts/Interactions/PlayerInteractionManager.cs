@@ -27,7 +27,6 @@ public class PlayerInteractionManager : MonoBehaviour
         // Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _interactDistance, Color.red);
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance))
         {
-            Debug.Log("Not looking");
             // You aren't looking at anything
             RemoveOutline(_focusedItem);
             _focusedItem = null;
@@ -67,7 +66,6 @@ public class PlayerInteractionManager : MonoBehaviour
     private void Pickup(GameObject obj)
     {
         _heldItem = obj;
-        Debug.Log($"Picked up item {obj.name}");
         obj.transform.SetParent(_holdPoint);
         var objRigidbody = obj.GetComponent<Rigidbody>();
         objRigidbody.useGravity = false;
