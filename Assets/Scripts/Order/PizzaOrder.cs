@@ -1,54 +1,36 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizzaOrder : MonoBehaviour
+public class PizzaOrder :  MonoBehaviour
 {
-    private Order _pizzaOrder;
-    private Dictionary<string, GameObject> _ingredients;
-    [SerializeField] private GameObject _pepperoni;
-    [SerializeField] private GameObject _olives;
-    [SerializeField] private GameObject _sausage;
+    private string _sauce;
+    private List<string> _ingredients;
+    private bool _orderDone;
 
     private void Awake()
     {
-        _pizzaOrder = GetComponent<Order>();
-        
-        _ingredients = new Dictionary<string, GameObject>()
-        {
-            {"Pepperoni",_pepperoni},
-            {"Sausage",_sausage},
-            {"Olives",_olives}
-        };
+        _ingredients = new List<string>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void AddSauce(string sauce)
     {
-        if (!other.gameObject.CompareTag("Ingredient")) return;
-        
-        AddIngredient(other.gameObject);
+        if (_orderDone || _sauce != "") return; // Can't replace the sauce
+        _sauce = sauce;
     }
 
-    private void AddIngredient(GameObject ingredient)
+    public void AddTopping(string ingredient)
     {
-        string ingredientName = ingredient.transform.name.Replace("Ingredient(Clone)", "");
-        _ingredients.TryGetValue(ingredientName, out GameObject toppingObj);
-        if (toppingObj)
-        {
-            if (ingredientName.Contains("Sauce"))
-            {
-                _pizzaOrder.AddSauce(ingredientName);
-            }
-            else
-            {
-                _pizzaOrder.AddTopping(ingredientName);
-            }
-            toppingObj.SetActive(true);
-            Destroy(ingredient);
-        }
-        else
-        {
-            Debug.Log(ingredientName + " is not a valid ingredient");
-        }
+        if  (_orderDone) return;
+        _ingredients.Add(ingredient);
+    }
+
+    public void FinishOrder()
+    {
+        _orderDone = true;
+    }
+
+    public override string ToString()
+    {
+        return $"SAUCE: {_sauce}\nINGREDIENTS: {string.Join(", ", _ingredients)}";
     }
 }
