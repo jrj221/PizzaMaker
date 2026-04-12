@@ -4,6 +4,7 @@ using UnityEngine;
 public class CustomerOrder : MonoBehaviour
 {
     private PizzaOrder _customerOrder;
+    private PizzaOrder _preparedOrder;
 
     private void Awake()
     {
@@ -20,5 +21,16 @@ public class CustomerOrder : MonoBehaviour
         }
         _customerOrder.FinishOrder();
         Debug.Log(_customerOrder);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PizzaOrder otherOrder = other.gameObject.GetComponent<PizzaOrder>();
+        if (!otherOrder) return;
+        if (!otherOrder.OrderDone) return;
+        
+        _preparedOrder = other.gameObject.GetComponent<PizzaOrder>();
+        int pizzaRating = OrderVerifier.Instance.Verify(_preparedOrder, _customerOrder);
+        Debug.Log("Your pizza score: " + pizzaRating);
     }
 }

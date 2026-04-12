@@ -3,34 +3,34 @@ using UnityEngine;
 
 public class PizzaOrder :  MonoBehaviour
 {
-    private string _sauce;
-    private List<string> _ingredients;
-    private bool _orderDone;
+    public string Sauce { get; private set; }
+    public List<string> Ingredients { get; private set; }
+    public bool OrderDone { get; private set; }
 
     private void Awake()
     {
-        _ingredients = new List<string>();
+        Ingredients = new List<string>();
     }
 
     public void AddSauce(string sauce)
     {
-        if (_orderDone || _sauce != "") return; // Can't replace the sauce
-        _sauce = sauce;
+        if (OrderDone || Sauce != "") return; // Can't replace the sauce
+        Sauce = sauce;
     }
 
     public void AddTopping(string ingredient)
     {
-        if  (_orderDone) return;
-        _ingredients.Add(ingredient);
+        if  (OrderDone) return;
+        Ingredients.Add(ingredient);
     }
 
     public void FinishOrder()
     {
-        _orderDone = true;
+        OrderDone = true;
     }
 
     public override string ToString()
     {
-        return $"SAUCE: {_sauce}\nINGREDIENTS: {string.Join(", ", _ingredients)}";
+        return $"SAUCE: {Sauce}\nINGREDIENTS: {string.Join(", ", Ingredients)}";
     }
 }
