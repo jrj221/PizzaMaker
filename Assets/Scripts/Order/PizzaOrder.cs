@@ -7,12 +7,18 @@ public class PizzaOrder : MonoBehaviour
     private Order _pizzaOrder;
     private Dictionary<string, GameObject> _ingredients;
     [SerializeField] private GameObject _pepperoni;
+    [SerializeField] private GameObject _olives;
+    [SerializeField] private GameObject _sausage;
 
     private void Awake()
     {
+        _pizzaOrder = GetComponent<Order>();
+        
         _ingredients = new Dictionary<string, GameObject>()
         {
             {"Pepperoni",_pepperoni},
+            {"Sausage",_sausage},
+            {"Olives",_olives}
         };
     }
 
@@ -25,20 +31,20 @@ public class PizzaOrder : MonoBehaviour
 
     private void AddIngredient(GameObject ingredient)
     {
-        string ingredientName = ingredient.transform.name.Replace("(Clone)", "");
-        _ingredients.TryGetValue(ingredientName, out GameObject ingredientObj);
-        if (ingredientObj)
+        string ingredientName = ingredient.transform.name.Replace("Ingredient(Clone)", "");
+        _ingredients.TryGetValue(ingredientName, out GameObject toppingObj);
+        if (toppingObj)
         {
             if (ingredientName.Contains("Sauce"))
             {
-                _pizzaOrder.addSauce(ingredientName);
+                _pizzaOrder.AddSauce(ingredientName);
             }
             else
             {
-                _pizzaOrder.addTopping(ingredientName);
+                _pizzaOrder.AddTopping(ingredientName);
             }
-            ingredientObj.SetActive(true);
-            Destroy(ingredientObj);
+            toppingObj.SetActive(true);
+            Destroy(ingredient);
         }
         else
         {

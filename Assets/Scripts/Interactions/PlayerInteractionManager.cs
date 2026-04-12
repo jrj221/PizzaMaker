@@ -59,7 +59,6 @@ public class PlayerInteractionManager : MonoBehaviour
     private void Interact()
     {
         var interactable = _focusedItem?.transform.gameObject.GetComponent<IInteract>();
-        Debug.Log(interactable);
         interactable?.Interact(_heldItem);
     }
 
