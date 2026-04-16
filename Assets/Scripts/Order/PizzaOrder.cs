@@ -12,16 +12,18 @@ public class PizzaOrder :  MonoBehaviour
         Ingredients = new List<string>();
     }
 
-    public void AddSauce(string sauce)
+    public bool AddSauce(string sauce)
     {
-        if (OrderDone || Sauce != "") return; // Can't replace the sauce
+        if (OrderDone || Sauce != "") return false; // Can't replace the sauce
         Sauce = sauce;
+        return true;
     }
 
-    public void AddTopping(string ingredient)
+    public bool AddTopping(string ingredient)
     {
-        if  (OrderDone) return;
+        if  (OrderDone) return false;
         Ingredients.Add(ingredient);
+        return true;
     }
 
     public void FinishOrder()

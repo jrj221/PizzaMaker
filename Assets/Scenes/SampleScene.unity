@@ -2578,6 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ad8908846234a60a07cc67a8303cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PizzaOrder
+  _reboundForce: 4
   _pepperoni: {fileID: 160354934}
   _olives: {fileID: 2025231251}
   _sausage: {fileID: 1649866771}

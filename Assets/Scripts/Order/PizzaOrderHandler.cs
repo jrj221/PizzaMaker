@@ -4,6 +4,7 @@ using UnityEngine;
 public class PizzaOrderHandler : MonoBehaviour
 {
     private PizzaOrder _pizzaOrder;
+    [SerializeField] private float _reboundForce;
     private Dictionary<string, GameObject> _ingredients;
     [SerializeField] private GameObject _pepperoni;
     [SerializeField] private GameObject _olives;
@@ -38,11 +39,14 @@ public class PizzaOrderHandler : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (!other.gameObject.CompareTag("Ingredient")) return;
-        
-        AddIngredient(other.gameObject);
+
+        if (!AddIngredient(other.gameObject)) // Ingredient not added
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddForce(-other.contacts[0].normal * _reboundForce, ForceMode.Impulse);
+        }
     }
 
-    private void AddIngredient(GameObject ingredient)
+    private bool AddIngredient(GameObject ingredient)
     {
         string ingredientName = ingredient.transform.name.Replace("Ingredient_", "").Replace("(Clone)", "");
         Debug.Log(ingredientName);
@@ -51,11 +55,11 @@ public class PizzaOrderHandler : MonoBehaviour
         {
             if (ingredientName.Contains("Sauce"))
             {
-                _pizzaOrder.AddSauce(ingredientName);
+                if (!_pizzaOrder.AddSauce(ingredientName)) return false; // Ingredient not added
             }
             else
             {
-                _pizzaOrder.AddTopping(ingredientName);
+                if (!_pizzaOrder.AddTopping(ingredientName)) return false;
             }
             toppingObj.SetActive(true);
             Destroy(ingredient);
@@ -63,6 +67,9 @@ public class PizzaOrderHandler : MonoBehaviour
         else
         {
             Debug.Log(ingredientName + " is not a valid ingredient");
+            return false;
         }
+
+        return true; // Ingredient added successfully. 
     }
 }
