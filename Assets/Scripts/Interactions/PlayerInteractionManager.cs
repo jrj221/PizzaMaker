@@ -32,7 +32,6 @@ public class PlayerInteractionManager : MonoBehaviour
             _focusedItem = null;
             return;
         }
-        
         if (hit.transform.gameObject.Equals(_focusedItem)) return; // Return if you're looking at the same thing as last frame
         
         RemoveOutline(_focusedItem);
@@ -88,6 +87,6 @@ public class PlayerInteractionManager : MonoBehaviour
         throwRigidbody.detectCollisions = true;
         throwRigidbody.useGravity = true;
         throwRigidbody.isKinematic = false;
-        throwRigidbody.AddForce(_throwForce * _camera.transform.forward, ForceMode.Impulse);
+        throwRigidbody.AddForce(100f * _throwForce * _camera.transform.forward);
     }
 }
