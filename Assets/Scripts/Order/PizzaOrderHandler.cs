@@ -49,7 +49,6 @@ public class PizzaOrderHandler : MonoBehaviour
     private bool AddIngredient(GameObject ingredient)
     {
         string ingredientName = ingredient.transform.name.Replace("Ingredient_", "").Replace("(Clone)", "");
-        Debug.Log(ingredientName);
         _ingredients.TryGetValue(ingredientName, out GameObject toppingObj);
         if (toppingObj)
         {

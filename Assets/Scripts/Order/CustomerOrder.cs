@@ -23,9 +23,9 @@ public class CustomerOrder : MonoBehaviour
         Debug.Log(_customerOrder);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        PizzaOrder otherOrder = other.gameObject.GetComponent<PizzaOrder>();
+        var otherOrder = other.gameObject.GetComponent<PizzaOrder>();
         if (!otherOrder) return;
         if (!otherOrder.OrderDone) return;
         

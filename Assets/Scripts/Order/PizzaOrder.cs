@@ -14,7 +14,7 @@ public class PizzaOrder :  MonoBehaviour
 
     public bool AddSauce(string sauce)
     {
-        if (OrderDone || Sauce != "") return false; // Can't replace the sauce
+        if (OrderDone || !string.IsNullOrEmpty(Sauce)) return false; // Can't replace the sauce
         Sauce = sauce;
         return true;
     }
