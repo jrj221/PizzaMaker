@@ -1,12 +1,14 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class OvenHandler : MonoBehaviour
 {
     [SerializeField] private float _cookTime;
     [SerializeField] private float _ovenEjectForce;
+    [SerializeField] private Transform _ovenEjectPoint;
     private bool _isCooking;
+
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,7 +34,8 @@ public class OvenHandler : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         var rb = pizzaOrder.GetComponent<Rigidbody>();
         rb.isKinematic = false;
-        rb.AddForce(10f * _ovenEjectForce * transform.right);
+        pizzaOrder.transform.position = _ovenEjectPoint.position;
+        rb.AddForce(_ovenEjectForce * transform.forward, ForceMode.Impulse);
         rb.detectCollisions = true;
         _isCooking = false;
         pizzaOrder.FinishOrder();
