@@ -5,6 +5,7 @@ using Vector3 = UnityEngine.Vector3;
 public class OvenHandler : MonoBehaviour
 {
     [SerializeField] private float _cookTime;
+    [SerializeField] private Material _cookedPizzaMaterial;
     [SerializeField] private float _ovenEjectForce;
     [SerializeField] private Transform _ovenEjectPoint;
     private bool _isCooking;
@@ -38,6 +39,7 @@ public class OvenHandler : MonoBehaviour
         rb.AddForce(_ovenEjectForce * transform.forward, ForceMode.Impulse);
         rb.detectCollisions = true;
         _isCooking = false;
+        pizzaOrder.GetComponent<MeshRenderer>().material = _cookedPizzaMaterial;
         pizzaOrder.FinishOrder();
     }
 }

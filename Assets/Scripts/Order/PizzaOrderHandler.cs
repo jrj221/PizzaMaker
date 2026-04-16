@@ -8,6 +8,13 @@ public class PizzaOrderHandler : MonoBehaviour
     [SerializeField] private GameObject _pepperoni;
     [SerializeField] private GameObject _olives;
     [SerializeField] private GameObject _sausage;
+    [SerializeField] private GameObject _bacon;
+    [SerializeField] private GameObject _lemons;
+    [SerializeField] private GameObject _jalapenos;
+    [SerializeField] private GameObject _cheese;
+    [SerializeField] private GameObject _whiteSauce;
+    [SerializeField] private GameObject _redSauce;
+    [SerializeField] private GameObject _pestoSauce;
 
     private void Awake()
     {
@@ -17,7 +24,14 @@ public class PizzaOrderHandler : MonoBehaviour
         {
             {"Pepperoni",_pepperoni},
             {"Sausage",_sausage},
-            {"Olives",_olives}
+            {"Olives",_olives},
+            {"Bacon", _bacon},
+            {"Lemons", _lemons},
+            {"Jalapenos", _jalapenos},
+            {"Cheese", _cheese},
+            {"White Sauce", _whiteSauce},
+            {"Red Sauce", _redSauce},
+            {"Pesto Sauce", _pestoSauce}
         };
     }
 
@@ -30,7 +44,8 @@ public class PizzaOrderHandler : MonoBehaviour
 
     private void AddIngredient(GameObject ingredient)
     {
-        string ingredientName = ingredient.transform.name.Replace("Ingredient(Clone)", "");
+        string ingredientName = ingredient.transform.name.Replace("Ingredient_", "").Replace("(Clone)", "");
+        Debug.Log(ingredientName);
         _ingredients.TryGetValue(ingredientName, out GameObject toppingObj);
         if (toppingObj)
         {
