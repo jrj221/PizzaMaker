@@ -8,7 +8,7 @@ public class PlayerInteractionManager : MonoBehaviour
     [SerializeField] private float _throwForce;
     private GameObject _heldItem;
     [SerializeField] private Transform _holdPoint;
-    private GameObject _focusedItem;
+    private IInteract _focusedItem;
 
     private void Start()
     {
@@ -24,22 +24,23 @@ public class PlayerInteractionManager : MonoBehaviour
 
     private void ManageObjectOutlines()
     {
-        // Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _interactDistance, Color.red);
+        Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _interactDistance, Color.red);
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance))
         {
             // You aren't looking at anything
-            RemoveOutline(_focusedItem);
+            if (_focusedItem != null) RemoveOutline(_focusedItem.GetOutlinePart());
             _focusedItem = null;
             return;
         }
-        if (hit.transform.gameObject.Equals(_focusedItem)) return; // Return if you're looking at the same thing as last frame
         
-        RemoveOutline(_focusedItem);
-        _focusedItem = null;
+        if (_focusedItem != null) RemoveOutline(_focusedItem.GetOutlinePart()); // If you WERE looking at something, remove its outline
         
-        if (!hit.transform.gameObject.layer.Equals(LayerMask.NameToLayer("Supports Outline"))) return; // Don't outline object that doesn't support it
-        _focusedItem = hit.transform.gameObject;
-        AddOutline(_focusedItem);
+        if (!hit.transform.gameObject.TryGetComponent(out IInteract interactable)) return;
+        // If the thing you are looking at now is interactable, give it an outline 
+        _focusedItem = interactable; // Reassign
+        AddOutline(_focusedItem.GetOutlinePart());
+        
+        // TODO Are there performance benefits to not reassigning and adding outlines when you're looking at the same object two frames in a row?
     }
 
     private void AddOutline(GameObject item)
@@ -57,8 +58,7 @@ public class PlayerInteractionManager : MonoBehaviour
 
     private void Interact()
     {
-        var interactable = _focusedItem?.transform.gameObject.GetComponent<IInteract>();
-        interactable?.Interact(_heldItem);
+        _focusedItem.Interact(_heldItem);
     }
 
     private void Pickup(GameObject obj)

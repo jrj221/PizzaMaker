@@ -6,16 +6,14 @@ using UnityEngine;
 public class Ingredient
 {
     [SerializeField] private string _name;
-    [SerializeField] private GameObject _prefab;
     [SerializeField] private Material _material;
 
     public string Name => _name;
-    public GameObject Prefab => _prefab;
     public Material Material => _material;
 }
 
 [CreateAssetMenu(fileName = "DatabaseSO", menuName = "Scriptable Objects/Object Database")]
-public class IngredientDatabase_BaseSO : ScriptableObject
+public class IngredientDatabase_SO : ScriptableObject
 {
     [SerializeField] public List<Ingredient> Ingredients;
 

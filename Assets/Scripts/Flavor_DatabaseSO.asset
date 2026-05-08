@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccc02ef16d8f4a8492a1a1d403da263, type: 3}
+  m_Name: Flavor_DatabaseSO
+  m_EditorClassIdentifier: Assembly-CSharp::IngredientDatabase_BaseSO
+  Ingredients:
+  - _name: Vanilla
+    _prefab: {fileID: 8044348986027686827, guid: c7ab8b0706b1f4fe084e3f04b59bfab8, type: 3}
+    _material: {fileID: 2100000, guid: 077d3e8e6e303486ea8a669a2ec223fe, type: 2}
+  - _name: Chocolate
+    _prefab: {fileID: 2495173334243213821, guid: 1618de1677425453a8bd7b59e111ba5d, type: 3}
+    _material: {fileID: 2100000, guid: 771541a7dab5340cbaeb0df40b704004, type: 2}
+  - _name: Pistachio
+    _prefab: {fileID: 8173605722435316443, guid: d0bf9e5cf43ab4e22ac82d0d55530d8e, type: 3}
+    _material: {fileID: 2100000, guid: a95a26e712e8b4358be3c31428f984e3, type: 2}
+  - _name: Lemon
+    _prefab: {fileID: 6956286383604533113, guid: e42034cb657404058be55db86eaafec8, type: 3}
+    _material: {fileID: 2100000, guid: 75eb1a4c3c1d94b02844c75855781aca, type: 2}
+  - _name: Blackberry
+    _prefab: {fileID: 4003403808005349621, guid: 07921e2fb05744e11a4492666b2afc04, type: 3}
+    _material: {fileID: 2100000, guid: b635492ace56f4cd9844b6d68a54699c, type: 2}
+  - _name: Strawberry
+    _prefab: {fileID: 3655460895502254265, guid: effad43bc415c4fd6bb9b9711d779593, type: 3}
+    _material: {fileID: 2100000, guid: d51d7a31538a741209e325a1cea19f4f, type: 2}
